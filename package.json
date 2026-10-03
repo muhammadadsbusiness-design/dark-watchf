@@ -13,7 +13,6 @@
     "lint": "node -e \"console.log('Lint passed: Pure HTML/CSS/JS')\""
   },
   "dependencies": {
-    "@neon/config": "^1.7.3",
     "@neondatabase/serverless": "^1.1.0",
     "dotenv": "^18.0.3",
     "pg": "^8.23.0"

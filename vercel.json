@@ -3,11 +3,6 @@
   "framework": "vite",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
-  "functions": {
-    "api/*.js": {
-      "maxDuration": 15
-    }
-  },
   "rewrites": [
     {
       "source": "/robots.txt",
@@ -52,10 +47,6 @@
     {
       "source": "/api/episodes/:id",
       "destination": "/api/works?episodeId=:id"
-    },
-    {
-      "source": "/api/health/database",
-      "destination": "/api/health-database"
     },
     {
       "source": "/api/(.*)",
