@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     return res.status(503).json({
       success: false,
       database: 'error',
-      message: 'POSTGRES_URL أو DATABASE_URL غير موجود في Environment Variables'
+      message: 'Database connection string is not configured. لم يتم العثور على POSTGRES_URL أو DATABASE_URL'
     });
   }
 
@@ -48,7 +48,7 @@ export async function GET() {
     return new Response(JSON.stringify({
       success: false,
       database: 'error',
-      message: 'POSTGRES_URL أو DATABASE_URL غير موجود في Environment Variables'
+      message: 'Database connection string is not configured. لم يتم العثور على POSTGRES_URL أو DATABASE_URL'
     }), {
       status: 503,
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }

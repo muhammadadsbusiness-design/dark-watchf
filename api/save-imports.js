@@ -10,7 +10,12 @@ export default async function handler(req, res) {
   }
 
   const connStr = getConnectionString();
-  const sql = getSql();
+  let sql = null;
+  try {
+    sql = connStr ? getSql() : null;
+  } catch {
+    sql = null;
+  }
 
   if (req.method === 'GET') {
     try {
