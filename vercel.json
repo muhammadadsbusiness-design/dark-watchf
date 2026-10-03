@@ -6,31 +6,83 @@
   "rewrites": [
     {
       "source": "/robots.txt",
-      "destination": "/api/robots"
+      "destination": "/api/seo?type=robots"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/sitemap?type=index"
+      "destination": "/api/seo?type=index"
     },
     {
       "source": "/sitemap-pages.xml",
-      "destination": "/api/sitemap?type=pages"
+      "destination": "/api/seo?type=pages"
     },
     {
       "source": "/sitemap-works.xml",
-      "destination": "/api/sitemap?type=works"
+      "destination": "/api/seo?type=works"
     },
     {
       "source": "/sitemap-episodes-(.*).xml",
-      "destination": "/api/sitemap?type=episodes&page=$1"
+      "destination": "/api/seo?type=episodes&page=$1"
+    },
+    {
+      "source": "/api/sitemap-links",
+      "destination": "/api/seo?type=links"
+    },
+    {
+      "source": "/api/seo-audit",
+      "destination": "/api/seo?type=audit"
     },
     {
       "source": "/(hilltopads[a-f0-9\\-_]+\\.html)",
-      "destination": "/api/hilltopads-verification?file=$1"
+      "destination": "/api/settings?file=$1"
     },
     {
       "source": "/(google[a-f0-9]+\\.html)",
-      "destination": "/api/google-verification?file=$1"
+      "destination": "/api/settings?file=$1"
+    },
+    {
+      "source": "/api/ads",
+      "destination": "/api/settings?action=ads"
+    },
+    {
+      "source": "/api/gsc",
+      "destination": "/api/settings?action=gsc"
+    },
+    {
+      "source": "/api/hilltopads-verification",
+      "destination": "/api/settings?action=hilltopads-verification"
+    },
+    {
+      "source": "/api/google-verification",
+      "destination": "/api/settings?action=google-verification"
+    },
+    {
+      "source": "/api/save-data",
+      "destination": "/api/works?action=save-data"
+    },
+    {
+      "source": "/api/delete-work",
+      "destination": "/api/works?action=delete-work"
+    },
+    {
+      "source": "/api/update-status",
+      "destination": "/api/works?action=update-status"
+    },
+    {
+      "source": "/api/related-works",
+      "destination": "/api/works?action=related-works"
+    },
+    {
+      "source": "/api/health/database",
+      "destination": "/api/health?check=database"
+    },
+    {
+      "source": "/api/health-database",
+      "destination": "/api/health?check=database"
+    },
+    {
+      "source": "/api/test-db",
+      "destination": "/api/health?check=test-db"
     },
     {
       "source": "/api/works/:id/episodes",

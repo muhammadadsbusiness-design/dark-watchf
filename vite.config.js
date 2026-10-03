@@ -3,22 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import worksHandler from './api/works.js';
-import saveDataHandler from './api/save-data.js';
-import deleteWorkHandler from './api/delete-work.js';
-import testDbHandler from './api/test-db.js';
-import healthDatabaseHandler from './api/health-database.js';
 import healthHandler from './api/health.js';
+import seoHandler from './api/seo.js';
+import settingsHandler from './api/settings.js';
 import saveImportsHandler from './api/save-imports.js';
-import updateStatusHandler from './api/update-status.js';
-import gscHandler from './api/gsc.js';
-import googleVerificationHandler from './api/google-verification.js';
-import relatedWorksHandler from './api/related-works.js';
-import adsHandler from './api/ads.js';
-import hilltopadsVerificationHandler from './api/hilltopads-verification.js';
-import robotsHandler from './api/robots.js';
-import sitemapHandler from './api/sitemap.js';
-import sitemapLinksHandler from './api/sitemap-links.js';
-import seoAuditHandler from './api/seo-audit.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,83 +55,54 @@ function apiMiddlewarePlugin() {
         });
 
         try {
-          if (url === '/api/health/database') {
-            req.body = await parseBody();
-            return await healthDatabaseHandler(req, res);
-          }
-          if (url === '/api/health') {
+          // 1. Health & Diagnostics
+          if (url === '/api/health' || url === '/api/health/database' || url === '/api/health-database' || url === '/api/test-db') {
             req.body = await parseBody();
             return await healthHandler(req, res);
           }
-          if (url === '/api/works') {
+
+          // 2. Works & Episodes CRUD
+          if (
+            url === '/api/works' ||
+            url === '/api/save-data' ||
+            url === '/api/delete-work' ||
+            url === '/api/update-status' ||
+            url === '/api/related-works'
+          ) {
             req.body = await parseBody();
             return await worksHandler(req, res);
           }
-          if (url === '/api/save-data') {
-            req.body = await parseBody();
-            return await saveDataHandler(req, res);
-          }
-          if (url === '/api/delete-work') {
-            req.body = await parseBody();
-            return await deleteWorkHandler(req, res);
-          }
-          if (url === '/api/test-db') {
-            req.body = await parseBody();
-            return await testDbHandler(req, res);
-          }
+
+          // 3. Imports
           if (url === '/api/save-imports') {
             req.body = await parseBody();
             return await saveImportsHandler(req, res);
           }
-          if (url === '/api/update-status') {
+
+          // 4. Settings, Ads & Verifications
+          if (
+            url === '/api/ads' ||
+            url === '/api/gsc' ||
+            url === '/api/hilltopads-verification' ||
+            url === '/api/google-verification' ||
+            (url.startsWith('/hilltopads') && url.endsWith('.html')) ||
+            (url.startsWith('/google') && url.endsWith('.html'))
+          ) {
             req.body = await parseBody();
-            return await updateStatusHandler(req, res);
+            return await settingsHandler(req, res);
           }
-          if (url === '/api/gsc') {
-            req.body = await parseBody();
-            return await gscHandler(req, res);
-          }
-          if (url === '/api/related-works') {
-            req.body = await parseBody();
-            return await relatedWorksHandler(req, res);
-          }
-          if (url === '/api/ads') {
-            req.body = await parseBody();
-            return await adsHandler(req, res);
-          }
-          if (url === '/api/hilltopads-verification' || (url.startsWith('/hilltopads') && url.endsWith('.html'))) {
-            req.body = await parseBody();
-            return await hilltopadsVerificationHandler(req, res);
-          }
-          if (url === '/api/google-verification' || (url.startsWith('/google') && url.endsWith('.html'))) {
-            req.body = await parseBody();
-            return await googleVerificationHandler(req, res);
-          }
-          if (url === '/robots.txt') {
-            return await robotsHandler(req, res);
-          }
-          if (url === '/api/seo-audit') {
-            return await seoAuditHandler(req, res);
-          }
-          if (url === '/api/sitemap-links') {
-            return await sitemapLinksHandler(req, res);
-          }
-          if (url === '/sitemap.xml') {
-            req.query = { type: 'index' };
-            return await sitemapHandler(req, res);
-          }
-          if (url === '/sitemap-pages.xml') {
-            req.query = { type: 'pages' };
-            return await sitemapHandler(req, res);
-          }
-          if (url === '/sitemap-works.xml') {
-            req.query = { type: 'works' };
-            return await sitemapHandler(req, res);
-          }
-          if (url.startsWith('/sitemap-episodes-') && url.endsWith('.xml')) {
-            const pageMatch = url.match(/sitemap-episodes-(\d+)\.xml/);
-            req.query = { type: 'episodes', page: pageMatch ? pageMatch[1] : 1 };
-            return await sitemapHandler(req, res);
+
+          // 5. SEO (Robots, Sitemaps, Audit)
+          if (
+            url === '/robots.txt' ||
+            url === '/api/seo-audit' ||
+            url === '/api/sitemap-links' ||
+            url === '/sitemap.xml' ||
+            url === '/sitemap-pages.xml' ||
+            url === '/sitemap-works.xml' ||
+            (url.startsWith('/sitemap-episodes-') && url.endsWith('.xml'))
+          ) {
+            return await seoHandler(req, res);
           }
         } catch (err) {
           console.error(`Error handling ${url}:`, err);
@@ -156,7 +115,6 @@ function apiMiddlewarePlugin() {
     }
   };
 }
-
 
 export default defineConfig({
   plugins: [apiMiddlewarePlugin()],
