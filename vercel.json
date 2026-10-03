@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "framework": "vite",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 15
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/robots.txt",
+      "destination": "/api/robots"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap?type=index"
+    },
+    {
+      "source": "/sitemap-pages.xml",
+      "destination": "/api/sitemap?type=pages"
+    },
+    {
+      "source": "/sitemap-works.xml",
+      "destination": "/api/sitemap?type=works"
+    },
+    {
+      "source": "/sitemap-episodes-(.*).xml",
+      "destination": "/api/sitemap?type=episodes&page=$1"
+    },
+    {
+      "source": "/(hilltopads[a-f0-9\\-_]+\\.html)",
+      "destination": "/api/hilltopads-verification?file=$1"
+    },
+    {
+      "source": "/(google[a-f0-9]+\\.html)",
+      "destination": "/api/google-verification?file=$1"
+    },
+    {
+      "source": "/api/works/:id/episodes",
+      "destination": "/api/works?id=:id&episodes=true"
+    },
+    {
+      "source": "/api/works/:id",
+      "destination": "/api/works?id=:id"
+    },
+    {
+      "source": "/api/episodes/:id/servers",
+      "destination": "/api/works?episodeId=:id&servers=true"
+    },
+    {
+      "source": "/api/episodes/:id",
+      "destination": "/api/works?episodeId=:id"
+    },
+    {
+      "source": "/api/health/database",
+      "destination": "/api/health-database"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dark Watch - مشاهدة الأنمي والكرتون أونلاين</title>
+  <meta name="description" content="Dark Watch - شاهد أحدث مسلسلات وأفلام الكرتون والأنمي أونلاين بجودة عالية وبدون إعلانات مزعجة، بتصميم عصري وسريع.">
+  <meta name="robots" content="index, follow">
+  <link id="canonical-url" rel="canonical" href="">
+  
+  <!-- OpenGraph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="Dark Watch - مشاهدة الأنمي والكرتون أونلاين">
+  <meta property="og:description" content="شاهد أروع مسلسلات وأفلام الكرتون والأنمي بجودة فائقة وبدون إعلانات مزعجة.">
+  <meta property="og:image" content="/images/logo.svg">
+  <meta property="og:site_name" content="Dark Watch">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dark Watch - مشاهدة الأنمي والكرتون أونلاين">
+  <meta name="twitter:description" content="شاهد أروع مسلسلات وأفلام الكرتون والأنمي بجودة فائقة وبدون إعلانات مزعجة.">
+  <meta name="twitter:image" content="/images/logo.svg">
+
+  <script>
+    (function() {
+      if (typeof window !== 'undefined' && window.location) {
+        var origin = window.location.origin;
+        var fullUrl = origin + window.location.pathname + window.location.hash;
+        var logoUrl = origin + '/images/logo.svg';
+
+        var c = document.getElementById('canonical-url');
+        if (c) c.href = fullUrl;
+
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.content = fullUrl;
+
+        var ogImg = document.querySelector('meta[property="og:image"]');
+        if (ogImg) ogImg.content = logoUrl;
+
+        var twImg = document.querySelector('meta[name="twitter:image"]');
+        if (twImg) twImg.content = logoUrl;
+      }
+    })();
+  </script>
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link rel="apple-touch-icon" href="/images/favicon.svg">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Schema.org JSON-LD -->
+  <script id="json-ld-data" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Dark Watch",
+    "url": "",
+    "description": "منصة مشاهدة الكرتون والأنمي المترجم والمدبلج بجودة عالية أونلاين."
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="#/" class="brand-logo" aria-label="Dark Watch الرئيسية">
+        <img src="/images/logo.svg" alt="Dark Watch" />
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav id="nav-menu" class="nav-menu">
+        <a href="#/" class="nav-link active">الرئيسية</a>
+        <a href="#/anime" class="nav-link">الأنمي</a>
+        <a href="#/cartoon" class="nav-link">الكرتون</a>
+      </nav>
+
+      <!-- Actions (Search + Mobile Toggle) -->
+      <div class="header-actions">
+        <button id="btn-open-search" class="btn-search-trigger" aria-label="بحث في الأعمال">
+          <span>🔍</span>
+          <span>بحث سريع...</span>
+          <span class="search-shortcut">/</span>
+        </button>
+
+        <button id="mobile-nav-toggle" class="mobile-nav-btn" aria-label="فتح القائمة">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dynamic Viewport -->
+  <main id="main-content" class="main-content" role="main">
+    <div style="text-align: center; padding: 80px 20px; color: var(--dw-text-muted);">
+      <div style="font-size: 32px; margin-bottom: 12px;">⏳</div>
+      <div>جاري تحميل مكتبة Dark Watch...</div>
+    </div>
+  </main>
+
+  <!-- Search Modal Overlay -->
+  <div id="search-modal" class="search-modal-backdrop">
+    <div class="search-modal-container">
+      <div class="search-input-wrapper">
+        <span style="font-size: 20px; color: var(--dw-red-glow);">🔍</span>
+        <input type="text" id="search-input" class="search-field" placeholder="ابحث باسم الأنمي أو الكرتون (عربي / إنجليزي)..." autocomplete="off" />
+        <button id="btn-close-search" class="search-close-btn" aria-label="إغلاق البحث">✕</button>
+      </div>
+      <div id="search-results" class="search-results-list">
+        <!-- Live search results injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/images/logo.svg" alt="Dark Watch" style="height: 32px;" />
+          <p>
+            منصة Dark Watch الترفيهية لمشاهدة مسلسلات وأفلام الأنمي والكرتون بجودة عالية وبدون تقطيع.
+          </p>
+        </div>
+
+        <div class="footer-nav">
+          <a href="#/" class="footer-nav-link">الرئيسية</a>
+          <a href="#/anime" class="footer-nav-link">الأنمي</a>
+          <a href="#/cartoon" class="footer-nav-link">الكرتون</a>
+          <a href="#/admin" class="footer-nav-link" style="color: #ff3846; font-weight: 700;">
+            لوحة الإدارة
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>جميع الحقوق محفوظة © Dark Watch 2026</div>
+        <div>تصميم وتطوير فائق السرعة والخفة • Pure HTML / CSS / JS</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Entry Script -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
